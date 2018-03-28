@@ -1,0 +1,9 @@
+
+options:
+  passwordLength      : 12
+  requireDigit        : true
+  requireMixedCase    : true
+  requirePunctuation  : true
+  restrictDigit       : false
+  restrictSpecialChar : false
+  
