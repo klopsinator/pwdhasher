@@ -43,9 +43,6 @@ public class PasswordHasherService {
 	/** Matches all special characters */
 	private static final Pattern SPECIAL_PATTERN = Pattern.compile("[^a-z0-9]", Pattern.CASE_INSENSITIVE);
 
-	/** Matches a site tag */
-	private static final Pattern SITE_TAG_PATTERN = Pattern.compile("^(.*):([0-9]+)?$");
-
 	/**
 	 * The password hashing function. Takes the site tag and master key as input and
 	 * returns the hash word (dependent on additional parameters that specify the
@@ -54,8 +51,9 @@ public class PasswordHasherService {
 	 * @throws NoSuchAlgorithmException
 	 * @throws InvalidKeyException
 	 */
-	public String hashPassword(String siteTag, String masterKey, int hashWordSize, boolean requireDigit,
-			boolean requirePunctuation, boolean requireMixedCase, boolean restrictSpecial, boolean restrictDigits) {
+	public String hashPassword(String siteTag, String masterKey, int hashWordSize, 
+			boolean requireDigit, boolean requirePunctuation, boolean requireMixedCase, 
+			boolean restrictSpecial, boolean restrictDigits) {
 
 		String password;
 		
@@ -71,25 +69,30 @@ public class PasswordHasherService {
 				String hash = toBase64(hmacSha1.doFinal(siteTag.getBytes()));
 				
 				int sum = 0;
-				for (int ii = 0; ii < hash.length(); ii++)
+				for (int ii = 0; ii < hash.length(); ii++) {
 					sum += hash.charAt(ii);
+				}
 				
 				// Restrict digits just does a mod 10 of all the characters
-				if (restrictDigits)
+				if (restrictDigits) {
 					hash = convertToDigits(hash, sum, hashWordSize);
-				else {
+				
+				} else {
 					// Inject digit, punctuation, and mixed case as needed.
-					if (requireDigit)
+					if (requireDigit) {
 						hash = injectSpecialCharacter(hash, 0, 4, sum, hashWordSize, '0', 10);
-					if (requirePunctuation && !restrictSpecial)
+					}
+					if (requirePunctuation && !restrictSpecial) {
 						hash = injectSpecialCharacter(hash, 1, 4, sum, hashWordSize, '!', 15);
+					}
 					if (requireMixedCase) {
 						hash = injectSpecialCharacter(hash, 2, 4, sum, hashWordSize, 'A', 26);
 						hash = injectSpecialCharacter(hash, 3, 4, sum, hashWordSize, 'a', 26);
 					}
 					// Strip out special characters as needed.
-					if (restrictSpecial)
+					if (restrictSpecial) {
 						hash = removeSpecialCharacters(hash, sum, hashWordSize);
+					}
 				}
 				
 				// Trim it to size.
@@ -147,16 +150,19 @@ public class PasswordHasherService {
 		int ii = 0;
 		while (ii < lenOut) {
 			Matcher m = SPECIAL_PATTERN.matcher(sInput.substring(ii));
-			if (!m.find())
+			if (!m.find()) {
 				break;
+			}
 			int matchPos = m.start();
-			if (matchPos > 0)
+			if (matchPos > 0) {
 				s.append(sInput.substring(ii, ii + matchPos));
+			}
 			s.append((char) ((seed + ii) % 26 + 65));
 			ii += (matchPos + 1);
 		}
-		if (ii < sInput.length())
+		if (ii < sInput.length()) {
 			s.append(sInput.substring(ii));
+		}
 		return s.toString();
 	}
 
@@ -168,8 +174,9 @@ public class PasswordHasherService {
 		int ii = 0;
 		while (ii < lenOut) {
 			Matcher m = NUM_PATTERN.matcher(sInput.substring(ii));
-			if (!m.find())
+			if (!m.find()) {
 				break;
+			}
 			int matchPos = m.start();
 			if (matchPos > 0) {
 				s.append(sInput.substring(ii, ii + matchPos));
@@ -181,23 +188,5 @@ public class PasswordHasherService {
 			s.append(sInput.substring(ii));
 		}
 		return s.toString();
-	}
-
-	/**
-	 * Bumps the site tag.
-	 * 
-	 * @param siteTag the original site tag that should be bumped
-	 * @return the bumped site tag
-	 * @throws NumberFormatException if the current site tag is not correctly
-	 *                               formatted
-	 */
-	public String bumpSiteTag(CharSequence siteTag) {
-		Matcher m = SITE_TAG_PATTERN.matcher(siteTag);
-		if (m.matches()) {
-			return m.replaceFirst(String.format("$1:%d", Integer.parseInt(m.group(2)) + 1));
-		} else if (siteTag.length() > 0) {
-			return String.format("%s:1", siteTag);
-		}
-		return siteTag.toString();
 	}
 }
