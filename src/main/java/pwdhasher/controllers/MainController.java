@@ -9,6 +9,7 @@ import com.sun.javafx.scene.control.skin.TextFieldSkin;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
 import pwdhasher.events.OptionChangedEvent;
 import pwdhasher.model.Options;
@@ -21,6 +22,8 @@ import pwdhasher.services.PasswordHasherService;
 @Controller
 public class MainController {
 
+	private static final int OPTION_PANE_HEIGHT = 126;
+
 	@FXML
 	private TextField txtSiteTag;
 
@@ -30,9 +33,12 @@ public class MainController {
 	@FXML
 	private TextField txtPassword;
 
-    @FXML
+	@FXML
     private ToggleButton btShowMasterKey;
-    
+        
+	@FXML
+    private TitledPane tabOptions;
+        
 	private Options options;
 
 	private PasswordHasherService passwordHasherService;
@@ -45,6 +51,15 @@ public class MainController {
 
 	@FXML
 	void initialize() {
+		tabOptions.expandedProperty().addListener((val, notExpanded, expanded) -> {
+			if (notExpanded) {
+				tabOptions.getScene().getWindow().sizeToScene();
+			} else {
+				double expandedHeight = tabOptions.getScene().getWindow().getHeight() + OPTION_PANE_HEIGHT;
+				tabOptions.getScene().getWindow().setHeight(expandedHeight);
+			}
+		});
+		
 		btShowMasterKey.textProperty().bind(Bindings.when(btShowMasterKey.selectedProperty()).then("Hide").otherwise("Show"));
 		btShowMasterKey.selectedProperty().addListener((val, notSelected, selected) -> {
 			txtMasterKey.setText(txtMasterKey.getText());

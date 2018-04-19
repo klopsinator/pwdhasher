@@ -42,8 +42,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		stage.setTitle("Password Hasher");
 		stage.setScene(new Scene(rootNode));
-		stage.setHeight(360);
-		stage.setWidth(480);
+		stage.sizeToScene();
 		stage.setResizable(false);
 		
 		stage.show();

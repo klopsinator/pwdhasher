@@ -4,6 +4,8 @@ This application is a simple password generator. It generates different password
 
 pwdhasher is a JavaFX desktop application with only one "page" containing three text fields and some options that control the password generation process. Two of the text fields are for entering a site tag and the master password. The password generator takes these two strings and generates a password hash according to the given options. The password hash is being displayed in the third text field from which it can be copied and used for logging in...
 
+ ![Screenshot](screenshots/screenshot.png)
+
 ## Acknowledgement
 The idea originates from the Mozilla plugin [Password Hasher](https://addons.mozilla.org/de/firefox/addon/password-hasher/), which is unfortunately not usable in current Firefoxes. 
 

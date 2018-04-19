@@ -32,9 +32,6 @@
                 <CheckBox fx:id="chkRequirePunctuation" mnemonicParsing="false" onAction="#handleOptionChanged" selected="true" text="Require Punctuation" GridPane.rowIndex="1" />
                 <CheckBox fx:id="chkRequireMixedCase" mnemonicParsing="false" onAction="#handleOptionChanged" selected="true" text="Require Mixed Case" GridPane.rowIndex="2" />
              </children>
-             <padding>
-                <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
-             </padding>
           </GridPane>
        </children>
     </AnchorPane>

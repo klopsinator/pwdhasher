@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane fx:id="rootPane" hgap="6.0" prefHeight="320.0" prefWidth="460.0" vgap="12.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwdhasher.controllers.MainController">
+<GridPane fx:id="rootPane" hgap="6.0" prefWidth="460.0" vgap="12.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pwdhasher.controllers.MainController">
    <columnConstraints>
       <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
@@ -30,7 +30,7 @@
          </children>
       </HBox>
       <TextField fx:id="txtPassword" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TitledPane animated="false" collapsible="false" text="Options" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+      <TitledPane fx:id="tabOptions" animated="false" expanded="false" text="Options" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
         <content>
         	<fx:include source="Options.fxml" />
         </content>
