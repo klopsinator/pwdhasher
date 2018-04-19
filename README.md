@@ -14,4 +14,6 @@ This project uses Maven to build. So, after you would have cloned this repositor
 
     mvn package
 
-should be sufficient to generate an executable jar file.
+should be sufficient to generate an executable jar file:
+
+    java -jar <the-generated-jar-file>
