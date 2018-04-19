@@ -45,7 +45,7 @@ public class MainController {
 
 	@FXML
 	void initialize() {
-		btShowMasterKey.textProperty().bind(Bindings.when(btShowMasterKey.selectedProperty()).then("Show").otherwise("Hide"));
+		btShowMasterKey.textProperty().bind(Bindings.when(btShowMasterKey.selectedProperty()).then("Hide").otherwise("Show"));
 		btShowMasterKey.selectedProperty().addListener((val, notSelected, selected) -> {
 			txtMasterKey.setText(txtMasterKey.getText());
 		});
