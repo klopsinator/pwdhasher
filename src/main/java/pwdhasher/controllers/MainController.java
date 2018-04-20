@@ -6,11 +6,14 @@ import org.springframework.stereotype.Controller;
 import com.google.common.eventbus.Subscribe;
 import com.sun.javafx.scene.control.skin.TextFieldSkin;
 
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.*;
 import pwdhasher.events.OptionChangedEvent;
 import pwdhasher.model.Options;
 import pwdhasher.services.PasswordHasherService;
@@ -35,7 +38,10 @@ public class MainController {
 
 	@FXML
     private ToggleButton btShowMasterKey;
-        
+
+	@FXML
+    private Button btCutClose;
+
 	@FXML
     private TitledPane tabOptions;
         
@@ -113,24 +119,18 @@ public class MainController {
 	void handleMasterKeyChanged() {
 		updatePasswordHash();
 	}
-    
 
-    @FXML
-    void handleBtShowMasterKeyClicked() {
-    	boolean showPassword = btShowMasterKey.isSelected();
-    	
-    	if (showPassword) {
-    		txtMasterKey.getStyleClass().remove("password-field");
-    		btShowMasterKey.setText("Hide");
-    		
-    	} else {
-    		txtMasterKey.getStyleClass().add("password-field");
-    		btShowMasterKey.setText("Show");
-    	}
-    }
-    
 	@Subscribe
 	public void handleOptionChanged(OptionChangedEvent event) {
 		updatePasswordHash();
+	}
+	
+	@FXML
+	void handleCutAndClose() {
+		ClipboardContent content = new ClipboardContent();
+        content.putString(txtPassword.getText());
+        Clipboard.getSystemClipboard().setContent(content);
+        
+        Platform.exit();
 	}
 }

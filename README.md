@@ -7,9 +7,11 @@ pwdhasher is a JavaFX desktop application with only one "page" containing three 
  ![Screenshot](screenshots/screenshot.png)
 
 ## Acknowledgement
-The idea originates from the Mozilla plugin [Password Hasher](https://addons.mozilla.org/de/firefox/addon/password-hasher/), which is unfortunately not usable in current Firefoxes. 
+The idea originates from the Mozilla plugin [Password Hasher](https://addons.mozilla.org/de/firefox/addon/password-hasher/), which is unfortunately not supported in current Firefoxes. 
 
-Another implementation of this idea has been made for the Android platform by Thilo-Alexander Ginkel. The source code for that Android app can be found here: [Hash It!](https://github.com/ginkel/hashit). The class [com.ginkel.hashit.PasswordHasher](https://github.com/ginkel/hashit/blob/master/src/main/java/com/ginkel/hashit/PasswordHasher.java) has been widely reused in this project, although some minor chnages have been applied, e.g. regarding the logging and base64 related stuff.
+Another implementation has been made for the Android platform by Thilo-Alexander Ginkel. The source code for that Android app can be found here: [Hash It!](https://github.com/ginkel/hashit). From this implementation the class [com.ginkel.hashit.PasswordHasher](https://github.com/ginkel/hashit/blob/master/src/main/java/com/ginkel/hashit/PasswordHasher.java) has been reused here, although some minor changes have been made, e.g. regarding the Android logging and Base64 related stuff.
+
+The application window icon has been copied from the Gemicon Icon Set: "A handcrafted icon set by Turqois (http://turqois.com), which there 3 different sizes (16, 32, 64). Each icon created with pixel-perfect shape layer on Photoshop. Released for Smashing Magazine and design community (http://gemicon.net)."
 
 ## Usage
 This project uses Maven to build. So, after you would have cloned this repository, an easy 
