@@ -32,7 +32,7 @@
       <HBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
             <TextField fx:id="txtPassword" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" HBox.hgrow="ALWAYS" />
-            <Button fx:id="btCutClose" mnemonicParsing="false" onAction="#handleCutAndClose" text="Cut &amp; Close" />
+            <Button mnemonicParsing="false" onAction="#handleCutAndClose" text="Cut &amp; Close" />
          </children>
       </HBox>
       <TitledPane fx:id="tabOptions" animated="false" expanded="false" text="Options" GridPane.columnSpan="2147483647" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">

@@ -9,11 +9,11 @@ import com.sun.javafx.scene.control.skin.TextFieldSkin;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.input.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import pwdhasher.events.OptionChangedEvent;
 import pwdhasher.model.Options;
 import pwdhasher.services.PasswordHasherService;
@@ -40,9 +40,6 @@ public class MainController {
     private ToggleButton btShowMasterKey;
 
 	@FXML
-    private Button btCutClose;
-
-	@FXML
     private TitledPane tabOptions;
         
 	private Options options;
@@ -56,7 +53,7 @@ public class MainController {
 	}
 
 	@FXML
-	void initialize() {
+	private void initialize() {
 		tabOptions.expandedProperty().addListener((val, notExpanded, expanded) -> {
 			if (notExpanded) {
 				tabOptions.getScene().getWindow().sizeToScene();
@@ -88,7 +85,7 @@ public class MainController {
 		});
 	}
 	
-	void updatePasswordHash() {
+	private void updatePasswordHash() {
 		String siteTag = txtSiteTag.getText();
 		String masterKey = txtMasterKey.getText();
 		
@@ -111,12 +108,12 @@ public class MainController {
 	}
 	
 	@FXML
-	void handleSiteTagChanged() {
+	private void handleSiteTagChanged() {
 		updatePasswordHash();
 	}
 
 	@FXML
-	void handleMasterKeyChanged() {
+	private void handleMasterKeyChanged() {
 		updatePasswordHash();
 	}
 
@@ -126,7 +123,7 @@ public class MainController {
 	}
 	
 	@FXML
-	void handleCutAndClose() {
+	private void handleCutAndClose() {
 		ClipboardContent content = new ClipboardContent();
         content.putString(txtPassword.getText());
         Clipboard.getSystemClipboard().setContent(content);
