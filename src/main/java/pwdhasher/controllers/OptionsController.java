@@ -49,7 +49,7 @@ public class OptionsController {
 	}
 
 	@FXML
-	private void initialize() {
+	protected void initialize() {
 		txtPasswordLength.setTextFormatter(new TextFormatter<Integer>(new IntegerStringConverter()));
 		txtPasswordLength.textProperty().bindBidirectional(options.passwordLengthProperty());
 		chkRequireDigit.selectedProperty().bindBidirectional(options.requireDigitProperty());
@@ -60,7 +60,7 @@ public class OptionsController {
 	}
 
 	@FXML
-	private void handleOptionChanged() {
+	protected void handleOptionChanged() {
 		eventBus.post(new OptionChangedEvent());
 	}
 }

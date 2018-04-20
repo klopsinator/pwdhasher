@@ -53,7 +53,7 @@ public class MainController {
 	}
 
 	@FXML
-	private void initialize() {
+	protected void initialize() {
 		tabOptions.expandedProperty().addListener((val, notExpanded, expanded) -> {
 			if (notExpanded) {
 				tabOptions.getScene().getWindow().sizeToScene();
@@ -108,12 +108,12 @@ public class MainController {
 	}
 	
 	@FXML
-	private void handleSiteTagChanged() {
+	protected void handleSiteTagChanged() {
 		updatePasswordHash();
 	}
 
 	@FXML
-	private void handleMasterKeyChanged() {
+	protected void handleMasterKeyChanged() {
 		updatePasswordHash();
 	}
 
@@ -123,7 +123,7 @@ public class MainController {
 	}
 	
 	@FXML
-	private void handleCutAndClose() {
+	protected void handleCutAndClose() {
 		ClipboardContent content = new ClipboardContent();
         content.putString(txtPassword.getText());
         Clipboard.getSystemClipboard().setContent(content);
