@@ -1,4 +1,4 @@
-# pwdhasher [![Build Status](https://travis-ci.org/klopsinator/pwdhasher.svg?branch=master)](https://travis-ci.org/klopsinator/pwdhasher) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5deea20e6259471ea33a2e9c4163e826)](https://www.codacy.com/app/andreas_9/pwdhasher?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=klopsinator/pwdhasher&amp;utm_campaign=Badge_Grade)
+# pwdhasher
 
 This application is a simple password generator. It generates different passwords for different web sites from only one master password. 
 
